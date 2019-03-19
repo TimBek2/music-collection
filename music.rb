@@ -20,7 +20,7 @@ class Music
         quit
 
       when 'help'
-        puts "here's the options:"
+        show_help_message
 
       else
         execute(input)
@@ -48,5 +48,18 @@ class Music
 
   def show_unrecognized_message
     puts "That's not a valid command. Type help to see your options"
+  end
+
+  def show_help_message
+    puts <<~HELP
+      help                          Shows this help message
+      add "$Album Title" "$Artist"  Add an album to your library
+      play "$Album Title"           Marks that album as "played"
+      show all                      Show a list of all albums and whether they've been played
+      show unplayed                 Show a list of only unplayed albums
+      show all by "$Artist"         Show a list of all albums by an artist
+      show unplayed by "$Artist"    Show a list of only unplayed albums by an artist
+      quit                          Exits the application.'
+    HELP
   end
 end

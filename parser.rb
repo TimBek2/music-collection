@@ -1,4 +1,3 @@
-require 'pry'
 require_relative './collection'
 
 class Parser
@@ -24,9 +23,9 @@ class Parser
 
   def execute
     if RECOGNIZED_COMMANDS.include? @command
-      binding.pry
       send(@command, @args)
     else
+      binding.pry
       raise UnknownCommandError
     end
   end
@@ -41,10 +40,10 @@ class Parser
 
   def parse_input
     unless @buffer.exist? /"/
-      @command = @buffer.string.sub(' ', '_') and @buffer.terminate
+      @command = @buffer.string.gsub(' ', '_') and @buffer.terminate
     else
       command = @buffer.scan_until /"/
-      @command = command.delete_suffix(' "').sub(' ', '_')
+      @command = command.delete_suffix(' "').gsub(' ', '_')
 
       @buffer.pos = @buffer.pos - 1
 
@@ -72,5 +71,9 @@ class Parser
 
   def show_unplayed(_args)
     $collection.show_unplayed
+  end
+
+  def show_all_by(args_arr)
+    $collection.show_all_by(args_arr[0])
   end
 end

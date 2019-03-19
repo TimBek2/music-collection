@@ -45,6 +45,8 @@ class Music
       show_unrecognized_command_message
     rescue Collection::UnknownAlbumError
       show_unrecognized_album_message
+    rescue Collection::NoValidAlbumsError
+      show_no_albums_message
     end
   end
 
@@ -53,11 +55,15 @@ class Music
   end
 
   def show_invalid_arguments_message
-    puts "That command was not formatted correctly. Type help to see your options"
+    puts "That command was not formatted correctly. Type help to see your options (parts after the $ should be replaced with values you want)"
   end
 
   def show_unrecognized_album_message
-    puts "You haven't added that album yet. Type help to see your options"
+    puts "You haven't added that album yet. Type help to see your options (you should add some albums)"
+  end
+
+  def show_no_albums_message
+    puts "Nothing to show! Type help to see your options (you should add some albums)"
   end
 
   def show_help_message

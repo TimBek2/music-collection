@@ -18,7 +18,7 @@ describe Album do
   end
 
   it 'becomes marked as played once it is played' do
-    album.play_album(collection)
+    album.play_album
 
     expect(album.played?).to eql(true)
   end

@@ -16,5 +16,6 @@ class Collection
   def play_album album
     @unplayed_albums - [album]
     @played_albums + [album]
+    album.play_album
   end
 end

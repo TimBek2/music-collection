@@ -9,10 +9,8 @@ class Album
     @played = false
   end
 
-  def play_album(collection=$collection)
+  def play_album
     @played = true
-    binding.pry
-    collection.play_album self
   end
 
   def played?

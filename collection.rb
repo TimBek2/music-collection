@@ -8,7 +8,13 @@ class Collection
   end
 
   def add_album album
+    binding.pry
     @all_albums << album
     @unplayed_albums << album
+  end
+
+  def play_album album
+    @unplayed_albums - [album]
+    @played_albums + [album]
   end
 end

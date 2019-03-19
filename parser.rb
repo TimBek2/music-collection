@@ -1,4 +1,5 @@
 require 'pry'
+require_relative './collection'
 
 class Parser
   RECOGNIZED_COMMANDS = [
@@ -56,8 +57,12 @@ class Parser
     end
   end
 
-  def add
-    # in the add method
+  def add(args_arr)
+    album = Album.new(args_arr[0], args_arr[1])
+    $collection.add_album(album)
+  end
+
+  def play(args_arr)
     binding.pry
   end
 end

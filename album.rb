@@ -9,6 +9,7 @@ class Album
 
   def play_album
     @played = true
+    $collection.play_album self
   end
 
   def played?

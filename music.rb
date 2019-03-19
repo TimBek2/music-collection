@@ -5,13 +5,12 @@ require_relative './collection'
 class Music
   def run
     @running = true
+    $collection = Collection.new
 
     puts 'Welcome to your music library!'
     puts 'What would you like to do?'
 
     while @running
-      $collection = Collection.new
-
       print "> "
       input = gets.chomp
 
@@ -37,17 +36,20 @@ class Music
 
   def execute(input)
     command = Parser.new(input)
-    binding.pry
     puts command.execute
 
   rescue ArgumentError
     show_invalid_arguments_message
   rescue Parser::UnknownCommand
-    show_unrecognized_message
+    show_unrecognized_command_message
   end
 
-  def show_unrecognized_message
+  def show_unrecognized_command_message
     puts "That's not a valid command. Type help to see your options"
+  end
+
+  def show_invalid_arguments_message
+    puts "That command was not formatted correctly. Type help to see your options"
   end
 
   def show_help_message

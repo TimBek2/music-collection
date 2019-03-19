@@ -47,6 +47,8 @@ class Music
       show_unrecognized_album_message
     rescue Collection::NoValidAlbumsError
       show_no_albums_message
+    rescue Collection::AlbumAlreadyExistsError
+      show_album_already_exists_message
     end
   end
 
@@ -64,6 +66,10 @@ class Music
 
   def show_no_albums_message
     puts "Nothing to show! Type help to see your options (you should add some albums)"
+  end
+
+  def show_album_already_exists_message
+    puts "An album by that name already exists. This system currently cannot hold two albums with the same title"
   end
 
   def show_help_message

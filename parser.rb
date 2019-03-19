@@ -57,8 +57,7 @@ class Parser
   end
 
   def add(args_arr)
-    album = Album.new(args_arr[0], args_arr[1])
-    $collection.add_album(album)
+    $collection.add_album(args_arr)
   end
 
   def play(args_arr)

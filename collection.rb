@@ -1,8 +1,9 @@
 class Collection
   attr_reader :all_albums, :unplayed_albums, :played_albums
 
-  UnknownAlbumError  = Class.new(StandardError)
-  NoValidAlbumsError = Class.new(StandardError)
+  UnknownAlbumError       = Class.new(StandardError)
+  NoValidAlbumsError      = Class.new(StandardError)
+  AlbumAlreadyExistsError = Class.new(StandardError)
 
   def initialize
     @all_albums = []
@@ -10,10 +11,17 @@ class Collection
     @played_albums = []
   end
 
-  def add_album album
-    @all_albums << album
-    @unplayed_albums << album
-    puts "Added \"#{album.title}\" by #{album.artist}"
+  def add_album args_arr
+    album_doesnt_exist = @all_albums.select { |album| album.title == args_arr[0] }.empty?
+
+    if album_doesnt_exist
+      album = Album.new(args_arr[0], args_arr[1])
+      @all_albums << album
+      @unplayed_albums << album
+      puts "Added \"#{album.title}\" by #{album.artist}"
+    else
+      raise AlbumAlreadyExistsError
+    end
   end
 
   def play_album album_title

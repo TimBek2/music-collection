@@ -38,5 +38,15 @@ class Music
   def execute(input)
     command = Parser.new(input)
     binding.pry
+    puts command.execute
+
+  rescue ArgumentError
+    show_invalid_arguments_message
+  rescue Parser::UnknownCommand
+    show_unrecognized_message
+  end
+
+  def show_unrecognized_message
+    puts "That's not a valid command. Type help to see your options"
   end
 end

@@ -63,6 +63,6 @@ class Parser
   end
 
   def play(args_arr)
-    binding.pry
+    $collection.play_album(args_arr[0])
   end
 end

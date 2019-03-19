@@ -20,8 +20,8 @@ class Collection
     if album.nil?
       raise UnknownAlbumError
     else
-      @unplayed_albums - [album]
-      @played_albums + [album]
+      @unplayed_albums -= [album]
+      @played_albums += [album]
       album.play_album
     end
   end
@@ -29,6 +29,12 @@ class Collection
   def show_all
     @all_albums.each do |album|
       puts "\"#{album.title}\" by #{album.artist} (#{album.played_text})"
+    end
+  end
+
+  def show_unplayed
+    @unplayed_albums.each do |album|
+      puts "\"#{album.title}\" by #{album.artist}"
     end
   end
 end

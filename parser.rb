@@ -69,4 +69,8 @@ class Parser
   def show_all(_args)
     $collection.show_all
   end
+
+  def show_unplayed(_args)
+    $collection.show_unplayed
+  end
 end

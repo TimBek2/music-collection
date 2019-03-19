@@ -1,6 +1,8 @@
 require_relative '../album'
+require_relative '../collection'
 
 describe Album do
+  let (:collection) { Collection.new }
   let (:album) { Album.new('Album Title', 'Tim') }
 
   it 'returns the title' do
@@ -16,7 +18,7 @@ describe Album do
   end
 
   it 'becomes marked as played once it is played' do
-    album.play_album
+    album.play_album(collection)
 
     expect(album.played?).to eql(true)
   end

@@ -1,3 +1,5 @@
+require 'pry'
+
 class Album
   attr_reader :title, :artist, :played
 
@@ -7,9 +9,10 @@ class Album
     @played = false
   end
 
-  def play_album
+  def play_album(collection=$collection)
     @played = true
-    $collection.play_album self
+    binding.pry
+    collection.play_album self
   end
 
   def played?

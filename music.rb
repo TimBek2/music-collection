@@ -81,7 +81,7 @@ class Music
       show unplayed                 Show a list of only unplayed albums
       show all by "$Artist"         Show a list of all albums by an artist
       show unplayed by "$Artist"    Show a list of only unplayed albums by an artist
-      quit                          Exits the application.'
+      quit                          Exits the application.
     HELP
   end
 end

@@ -35,13 +35,17 @@ class Music
   end
 
   def execute(input)
+    begin
     command = Parser.new(input)
     puts command.execute
 
-  rescue ArgumentError
-    show_invalid_arguments_message
-  rescue Parser::UnknownCommand
-    show_unrecognized_command_message
+    rescue ArgumentError
+      show_invalid_arguments_message
+    rescue Parser::UnknownCommandError
+      show_unrecognized_command_message
+    rescue Collection::UnknownAlbumError
+      show_unrecognized_album_message
+    end
   end
 
   def show_unrecognized_command_message
@@ -50,6 +54,10 @@ class Music
 
   def show_invalid_arguments_message
     puts "That command was not formatted correctly. Type help to see your options"
+  end
+
+  def show_unrecognized_album_message
+    puts "You haven't added that album yet. Type help to see your options"
   end
 
   def show_help_message

@@ -11,6 +11,7 @@ class Album
 
   def play_album
     @played = true
+    puts "You're listening to #{self.title}"
   end
 
   def played?

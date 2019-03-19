@@ -11,7 +11,7 @@ class Parser
                           'show unplayed by'
                         ]
 
-  UnknownCommand      = Class.new(StandardError)
+  UnknownCommandError   = Class.new(StandardError)
 
   attr_reader :command, :args
 
@@ -24,10 +24,9 @@ class Parser
 
   def execute
     if RECOGNIZED_COMMANDS.include? @command
-      binding.pry
       send(@command, @args)
     else
-      raise UnknownCommand
+      raise UnknownCommandError
     end
   end
 

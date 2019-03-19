@@ -75,4 +75,8 @@ class Parser
   def show_all_by(args_arr)
     $collection.show_all_by(args_arr[0])
   end
+
+  def show_unplayed_by(args_arr)
+    $collection.show_unplayed_by(args_arr[0])
+  end
 end

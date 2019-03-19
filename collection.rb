@@ -65,4 +65,16 @@ class Collection
       end
     end
   end
+
+  def show_unplayed_by artist_name
+    artist_albums = @unplayed_albums.select { |album| album.artist == artist_name }
+
+    if artist_albums.length == 0
+      raise NoValidAlbumsError
+    else
+      artist_albums.length.times do |i|
+        puts "\"#{artist_albums[i].title}\" by #{artist_albums[i].artist}"
+      end
+    end
+  end
 end

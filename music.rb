@@ -34,3 +34,9 @@ class Music
     puts 'Goodbye!'
     @running = false
   end
+
+  def execute(input)
+    command = Parser.new(input)
+    binding.pry
+  end
+end

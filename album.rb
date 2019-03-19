@@ -14,7 +14,7 @@ class Album
     puts "You're listening to #{self.title}"
   end
 
-  def played?
-    @played
+  def played_text
+    @played ? 'Played' : 'Unplayed'
   end
 end

@@ -25,4 +25,10 @@ class Collection
       album.play_album
     end
   end
+
+  def show_all
+    @all_albums.each do |album|
+      puts "\"#{album.title}\" by #{album.artist} (#{album.played_text})"
+    end
+  end
 end

@@ -5,10 +5,10 @@ class Parser
   RECOGNIZED_COMMANDS = [
                           'add',
                           'play',
-                          'show all',
-                          'show unplayed',
-                          'show all by',
-                          'show unplayed by'
+                          'show_all',
+                          'show_unplayed',
+                          'show_all_by',
+                          'show_unplayed_by'
                         ]
 
   UnknownCommandError   = Class.new(StandardError)
@@ -24,6 +24,7 @@ class Parser
 
   def execute
     if RECOGNIZED_COMMANDS.include? @command
+      binding.pry
       send(@command, @args)
     else
       raise UnknownCommandError
@@ -40,10 +41,10 @@ class Parser
 
   def parse_input
     unless @buffer.exist? /"/
-      @command = @buffer.string and @buffer.terminate
+      @command = @buffer.string.sub(' ', '_') and @buffer.terminate
     else
       command = @buffer.scan_until /"/
-      @command = command.delete_suffix(' "')
+      @command = command.delete_suffix(' "').sub(' ', '_')
 
       @buffer.pos = @buffer.pos - 1
 
@@ -63,5 +64,9 @@ class Parser
 
   def play(args_arr)
     $collection.play_album(args_arr[0])
+  end
+
+  def show_all(_args)
+    $collection.show_all
   end
 end
